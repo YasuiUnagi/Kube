@@ -158,4 +158,7 @@ namespace kube {
 #include <kube_window.hh>
 #include <kube_window_listener.hh>
 
+#ifdef KUBE_HEADERONLY
+#include <kube_kernel.hh>
+#endif
 #endif

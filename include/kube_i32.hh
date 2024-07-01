@@ -38,11 +38,11 @@ namespace kube {
 
     // Implement of unary + operator.
     constexpr auto operator+(i32 v) noexcept
-        -> i32 { return {+v.native}; }
+        -> i32 { return {static_cast<i32::native_type>(+v.native)}; }
 
     // Implement of unary - operator.
     constexpr auto operator-(i32 v) noexcept
-        -> i32 { return {-v.native}; }
+        -> i32 { return {static_cast<i32::native_type>(-v.native)}; }
 
     // Implement of `add` operator.
     constexpr auto operator+(i32 v1, i32 v2) noexcept

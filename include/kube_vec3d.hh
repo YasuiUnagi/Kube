@@ -32,11 +32,13 @@ namespace kube {
 
     // Conversion operator to f64 to f64::native_type.
     template <>
+    template <>
     constexpr vec3d<f64>::operator vec3d<f64::native_type>() const noexcept {
         return {x.native, y.native, z.native};
     }
 
     // Conversion operator to f32 to f32::native_type.
+    template <>
     template <>
     constexpr vec3d<f32>::operator vec3d<f32::native_type>() const noexcept {
         return {x.native, y.native, z.native};
@@ -44,11 +46,13 @@ namespace kube {
 
     // Conversion operator to f64::native_type to f64.
     template <>
+    template <>
     constexpr vec3d<f64::native_type>::operator vec3d<f64>() const noexcept {
         return {x, y, z};
     }
 
     // Conversion operator to f32::native_type to f32.
+    template <>
     template <>
     constexpr vec3d<f32::native_type>::operator vec3d<f32>() const noexcept {
         return {x, y, z};

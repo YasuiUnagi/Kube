@@ -25,14 +25,14 @@ namespace kube {
         // Preserve native type variables.
         native_type native;
     };
-
+    
     // Implement of unary + operator.
     constexpr auto operator+(i64 v) noexcept
-        -> i64 { return {+v.native}; }
+        -> i64 { return {static_cast<i64::native_type>(+v.native)}; }
 
     // Implement of unary - operator.
     constexpr auto operator-(i64 v) noexcept
-        -> i64 { return {-v.native}; }
+        -> i64 { return {static_cast<i64::native_type>(-v.native)}; }
 
     // Implement of `add` operator.
     constexpr auto operator+(i64 v1, i64 v2) noexcept

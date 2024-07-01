@@ -83,7 +83,7 @@ namespace kube {
         return std::cbrt(x);
     }
 
-    KUBE_HEADERONLY_INLINE auto _khypot2_f64(
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f64(
         typename f64::native_type x,
         typename f64::native_type y
     ) noexcept
@@ -91,7 +91,7 @@ namespace kube {
         return std::hypot(x, y);
     }
 
-    KUBE_HEADERONLY_INLINE auto _khypot3_f64(
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f64(
         typename f64::native_type x,
         typename f64::native_type y,
         typename f64::native_type z
@@ -177,7 +177,7 @@ namespace kube {
         return std::cbrt(x);
     }
 
-    KUBE_HEADERONLY_INLINE auto _khypot2_f32(
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f32(
         typename f32::native_type x,
         typename f32::native_type y
     ) noexcept
@@ -185,7 +185,7 @@ namespace kube {
         return std::hypot(x, y);
     }
 
-    KUBE_HEADERONLY_INLINE auto _khypot3_f32(
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f32(
         typename f32::native_type x,
         typename f32::native_type y,
         typename f32::native_type z

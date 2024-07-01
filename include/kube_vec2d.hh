@@ -31,25 +31,29 @@ namespace kube {
     };
 
     // Conversion operator from f32 to f32::native_type.
-    template<>
+    template <>
+    template <>
     constexpr vec2d<f64>::operator vec2d<f64::native_type>() const noexcept {
         return {x.native, y.native};
     }
 
     // Conversion operator from f32 to f32::native_type.
-    template<>
+    template <>
+    template <>
     constexpr vec2d<f32>::operator vec2d<f32::native_type>() const noexcept {
         return {x.native, y.native};
     }
 
     // Conversion operator from f32::native_type to f32.
-    template<>
+    template <>
+    template <>
     constexpr vec2d<f64::native_type>::operator vec2d<f64>() const noexcept {
         return {{x}, {y}};
     }
 
     // Conversion operator from f32::native_type to f32.
-    template<>
+    template <>
+    template <>
     constexpr vec2d<f32::native_type>::operator vec2d<f32>() const noexcept {
         return {{x}, {y}};
     }

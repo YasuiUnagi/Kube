@@ -62,13 +62,13 @@ namespace kube {
     KUBE_HEADERONLY_INLINE auto _kcbrt_f64(typename f64::native_type x) noexcept
         -> typename f64::native_type;
 
-    KUBE_HEADERONLY_INLINE auto _khypot2_f64(
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f64(
         typename f64::native_type x,
         typename f64::native_type y
     ) noexcept
         -> typename f64::native_type;
 
-    KUBE_HEADERONLY_INLINE auto _khypot3_f64(
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f64(
         typename f64::native_type x,
         typename f64::native_type y,
         typename f64::native_type z
@@ -122,13 +122,13 @@ namespace kube {
     KUBE_HEADERONLY_INLINE auto _kcbrt_f32(typename f32::native_type x) noexcept
         -> typename f32::native_type;
 
-    KUBE_HEADERONLY_INLINE auto _khypot2_f32(
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f32(
         typename f32::native_type x,
         typename f32::native_type y
     ) noexcept
         -> typename f32::native_type;
 
-    KUBE_HEADERONLY_INLINE auto _khypot3_f32(
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f32(
         typename f32::native_type x,
         typename f32::native_type y,
         typename f32::native_type z
@@ -324,13 +324,13 @@ namespace kube {
     template <>
     inline auto hypot<f32>(f32 x, f32 y) noexcept
         -> f32 {
-        return {_khypot2_f32(x.native, y.native)};
+        return {_khypot2d_f32(x.native, y.native)};
     }
 
     template <>
     inline auto hypot<f32>(f32 x, f32 y, f32 z) noexcept
         -> f32 {
-        return {_khypot3_f32(x.native, y.native, z.native)};
+        return {_khypot3d_f32(x.native, y.native, z.native)};
     }
 
     // Template specializations for f64
@@ -427,13 +427,13 @@ namespace kube {
     template <>
     inline auto hypot(f64 x, f64 y) noexcept
         -> f64 {
-        return {_khypot2_f64(x.native, y.native)};
+        return {_khypot2d_f64(x.native, y.native)};
     }
 
     template <>
     inline auto hypot(f64 x, f64 y, f64 z) noexcept
         -> f64 {
-        return {_khypot3_f64(x.native, y.native, z.native)};
+        return {_khypot3d_f64(x.native, y.native, z.native)};
     }
 }
 
