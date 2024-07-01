@@ -24,10 +24,6 @@ namespace kube {
         constexpr auto map(T fn(T)) const noexcept
             -> vec3d { return {fn(x), fn(y), fn(z)}; }
 
-        // Get Euclidean norm 3d.
-        constexpr auto hypot() const noexcept
-            -> T { return hypot(x, y, z); }
-
         // Co0nversion operator to U.
         template < typename U >
         constexpr operator vec3d<U>() const noexcept
@@ -107,6 +103,19 @@ namespace kube {
     template < typename T >
     constexpr auto operator%(const vec3d<T> &v, const T &scalar) noexcept
         -> vec3d<T> { return { v.x % scalar, v.y % scalar, v.z % scalar}; }
+
+    
+    template < typename T >
+    inline auto hypot(vec3d<T> v) noexcept
+        -> T = delete;
+
+    template <>
+    inline auto hypot(vec3d<f64> v) noexcept
+        -> f64 { return hypot(v.x, v.y, v.z); }
+
+    template <>
+    inline auto hypot(vec3d<f32> v) noexcept
+        -> f32 { return hypot(v.x, v.y, v.z); }
 
 
     template < typename T >

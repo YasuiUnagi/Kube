@@ -24,10 +24,6 @@ namespace kube {
         constexpr auto map(T fn(T)) const noexcept
             -> vec2d { return {fn(x), fn(y)}; }
 
-        // Get Euclidean norm 2d.
-        constexpr auto hypot() const noexcept
-            -> T { return hypot(x, y); }
-
         // Co0nversion operator to U.
         template < typename U >
         constexpr operator vec2d<U>() const noexcept
@@ -49,13 +45,13 @@ namespace kube {
     // Conversion operator from f32::native_type to f32.
     template<>
     constexpr vec2d<f64::native_type>::operator vec2d<f64>() const noexcept {
-        return {x, y};
+        return {{x}, {y}};
     }
 
     // Conversion operator from f32::native_type to f32.
     template<>
     constexpr vec2d<f32::native_type>::operator vec2d<f32>() const noexcept {
-        return {x, y};
+        return {{x}, {y}};
     }
 
     // Implements for "add" of 2d vector.
@@ -107,6 +103,20 @@ namespace kube {
     template < typename T >
     constexpr auto operator%(const vec2d<T> &v, const T &scalar) noexcept
         -> vec2d<T> { return {v.x % scalar, v.y % scalar}; }
+
+
+    template < typename T >
+    inline auto hypot(vec2d<T> v) noexcept
+        -> T = delete;
+    
+    template <>
+    inline auto hypot(vec2d<f64> v) noexcept
+        -> f64 { return hypot(v.x, v.y); }
+
+    template <>
+    inline auto hypot(vec2d<f32> v) noexcept
+        -> f32 { return hypot(v.x, v.y); }
+
 
     // rotator for 2d vector.
     template < typename T >

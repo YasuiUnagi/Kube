@@ -15,60 +15,52 @@
 
 namespace kube {
 
+    // Kernel of 2d graphics for change 4d color.
+    KUBE_HEADERONLY_INLINE void _kgraph_change_color4d_f32(
+        typename f32::native_type r,
+        typename f32::native_type g,
+        typename f32::native_type b,
+        typename f32::native_type a
+    ) noexcept;
+
+    // Kernel of 2d graphics for change 4d color.
+    KUBE_HEADERONLY_INLINE void _kgraph_change_color4d_f64(
+        typename f64::native_type r,
+        typename f64::native_type g,
+        typename f64::native_type b,
+        typename f64::native_type a
+    ) noexcept;
+
     struct graphics2d {
-
-
-        constexpr virtual void change_color4d(const color4d<f64> &)
-            = 0;
         
-        constexpr virtual void change_color4d(const color4d<f32> &)
-            = 0;
+        // Change color by 4d color.
+        void change_color4d(const color4d<f64> &);
+        void change_color4d(const color4d<f32> &);
 
-        constexpr virtual void change_color4d(const color4d<u32> &)
-            = 0;
+        // Change color by 3d color.
+        void change_color3d(const color3d<f64> &);
+        void change_color3d(const color3d<f32> &);
 
-        constexpr virtual void change_color4d(const color4d<u16> &)
-            = 0;
-
-        constexpr virtual void change_color4d(const color4d<u8> &)
-            = 0;
-
-
-        constexpr virtual void change_color3d(const color3d<f64> &)
-            = 0;
-
-        constexpr virtual void change_color3d(const color3d<f32> &)
-            = 0;
-
-        constexpr virtual void change_color3d(const color3d<u32> &)
-            = 0;
-
-        constexpr virtual void change_color3d(const color3d<u16> &)
-            = 0;
-
-        constexpr virtual void change_color3d(const color3d<u8> &)
-            = 0;
-
-
-        constexpr virtual void draw_lin2d(
+    
+        void draw_lin2d(
             const vec2d<f64> &v1,
             const vec2d<f64> &v2
-        ) = 0;
+        );
 
-        constexpr virtual void draw_lin2d(
+        void draw_lin2d(
             const vec2d<f32> &v1,
             const vec2d<f32> &v2
-        ) = 0;
+        );
 
-        constexpr virtual void draw_box2d(
+        void draw_box2d(
             const vec2d<f64> &v1,
             const vec2d<f64> &v2
-        ) = 0;
+        );
 
-        constexpr virtual void draw_box2d(
+        void draw_box2d(
             const vec2d<f32> &v1,
             const vec2d<f32> &v2
-        ) = 0;
+        );
     } ;
 }
 
