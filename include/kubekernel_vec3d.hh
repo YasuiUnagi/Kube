@@ -1,5 +1,5 @@
-#ifndef KUBE_VEC3D_KERNEL_HH
-#define KUBE_VEC3D_KERNEL_HH
+#ifndef KUBEKERNEL_VEC3D_HH
+#define KUBEKERNEL_VEC3D_HH
 
 #include <kube.hh>
 

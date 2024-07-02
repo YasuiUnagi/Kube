@@ -1,5 +1,5 @@
-#ifndef KUBE_MATH_IMPL_HH
-#define KUBE_MATH_IMPL_HH
+#ifndef KUBEKERNEL_MATH_HH
+#define KUBEKERNEL_MATH_HH
 
 #include <kube.hh>
 #include <cmath>  // Include the standard math library

@@ -8,8 +8,8 @@
  * yasuiunagi276951438@gmail.com
  */
 
-#ifndef KUBE_VEC2D_KERNEL_HH
-#define KUBE_VEC2D_KERNEL_HH
+#ifndef KUBEKERNEL_VEC2D__HH
+#define KUBEKERNEL_VEC2D_HH
 
 #include <kube.hh>
 

@@ -7,7 +7,7 @@ namespace kube {
 
     struct window {
         
-        constexpr void run(window_listener &listener);
+        void run(window_adapter &adapter);
     };
 }
 
