@@ -16,77 +16,79 @@
 
 namespace kube {
 
-    // 32-bit floating-point type with enhanced type safety.
-    struct alignas(4) i32 final {
+using _ki32 = std::int32_t;
 
-        // Native type alias.
-        using native_type = std::int32_t;
+// 32-bit floating-point type with enhanced type safety.
+struct alignas(4) i32 final {
 
-        // Preserve native type variables.
-        native_type native;
+    // Native type alias.
+    using native_type = _ki32;
 
-        // Conversion operator to 64bit floating-point.
-        constexpr operator f64() const noexcept {
-            return {static_cast<f64::native_type>(native)};
-        }
+    // Preserve native type variables.
+    native_type native;
 
-        // Conversion operator to 64bit signed-integer.
-        constexpr operator i64() const noexcept {
-            return {static_cast<i64::native_type>(native)};
-        }
-    };
+    // Conversion operator to 64bit floating-point.
+    constexpr operator f64() const noexcept {
+        return {static_cast<f64::native_type>(native)};
+    }
 
-    // Implement of unary + operator.
-    constexpr auto operator+(i32 v) noexcept
-        -> i32 { return {static_cast<i32::native_type>(+v.native)}; }
+    // Conversion operator to 64bit signed-integer.
+    constexpr operator i64() const noexcept {
+        return {static_cast<i64::native_type>(native)};
+    }
+};
 
-    // Implement of unary - operator.
-    constexpr auto operator-(i32 v) noexcept
-        -> i32 { return {static_cast<i32::native_type>(-v.native)}; }
+// Implement of unary + operator.
+constexpr auto operator+(i32 v) noexcept
+    -> i32 { return {static_cast<i32::native_type>(+v.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator+(i32 v1, i32 v2) noexcept
-        -> i32 { return {static_cast<i32::native_type>(v1.native + v2.native)}; }
-    
-    // Implement of `sub` operator.
-    constexpr auto operator-(i32 v1, i32 v2) noexcept
-        -> i32 { return {static_cast<i32::native_type>(v1.native - v2.native)}; }
+// Implement of unary - operator.
+constexpr auto operator-(i32 v) noexcept
+    -> i32 { return {static_cast<i32::native_type>(-v.native)}; }
 
-    // Implement of `mul` operator.
-    constexpr auto operator*(i32 v1, i32 v2) noexcept
-        -> i32 { return {static_cast<i32::native_type>(v1.native * v2.native)}; }
+// Implement of `add` operator.
+constexpr auto operator+(i32 v1, i32 v2) noexcept
+    -> i32 { return {static_cast<i32::native_type>(v1.native + v2.native)}; }
 
-    // Implement of `div` operator.
-    constexpr auto operator/(i32 v1, i32 v2) noexcept
-        -> i32 { return {static_cast<i32::native_type>(v1.native / v2.native)}; }
+// Implement of `sub` operator.
+constexpr auto operator-(i32 v1, i32 v2) noexcept
+    -> i32 { return {static_cast<i32::native_type>(v1.native - v2.native)}; }
 
-    // Implement of `mod` operator.
-    constexpr auto operator%(i32 v1, i32 v2) noexcept
-        -> i32 { return {static_cast<i32::native_type>(v1.native % v2.native)}; }
+// Implement of `mul` operator.
+constexpr auto operator*(i32 v1, i32 v2) noexcept
+    -> i32 { return {static_cast<i32::native_type>(v1.native * v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native < v2.native; }
+// Implement of `div` operator.
+constexpr auto operator/(i32 v1, i32 v2) noexcept
+    -> i32 { return {static_cast<i32::native_type>(v1.native / v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native > v2.native; }
+// Implement of `mod` operator.
+constexpr auto operator%(i32 v1, i32 v2) noexcept
+    -> i32 { return {static_cast<i32::native_type>(v1.native % v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<=(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native <= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native < v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>=(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native >= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native > v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator==(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native == v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<=(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native <= v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator!=(i32 v1, i32 v2) noexcept
-        -> bool { return v1.native != v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>=(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native >= v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator==(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native == v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator!=(i32 v1, i32 v2) noexcept
+    -> bool { return v1.native != v2.native; }
 }
 
 #endif

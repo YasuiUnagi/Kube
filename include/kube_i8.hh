@@ -16,92 +16,94 @@
 
 namespace kube {
 
-    // 32-bit floating-point type with enhanced type safety.
-    struct alignas(1) i8 final {
+using _ki8 = std::int8_t;
 
-        // Native type alias.
-        using native_type = std::int8_t;
+// 32-bit floating-point type with enhanced type safety.
+struct alignas(1) i8 final {
 
-        // Preserve native type variables.
-        native_type native;
+    // Native type alias.
+    using native_type = _ki8;
 
-        // Conversion operator to 64bit floating-point.
-        constexpr operator f64() const noexcept {
-            return {static_cast<f64::native_type>(native)};
-        }
+    // Preserve native type variables.
+    native_type native;
 
-        // Conversion operator to 32bit floating-point.
-        constexpr operator f32() const noexcept {
-            return {static_cast<f32::native_type>(native)};
-        }
+    // Conversion operator to 64bit floating-point.
+    constexpr operator f64() const noexcept {
+        return {static_cast<f64::native_type>(native)};
+    }
 
-        // Conversion operator to 64bit signed-integer.
-        constexpr operator i64() const noexcept {
-            return {static_cast<i64::native_type>(native)};
-        }
+    // Conversion operator to 32bit floating-point.
+    constexpr operator f32() const noexcept {
+        return {static_cast<f32::native_type>(native)};
+    }
 
-        // Conversion operator to 32bit signed-integer.
-        constexpr operator i32() const noexcept {
-            return {static_cast<i32::native_type>(native)};
-        }
+    // Conversion operator to 64bit signed-integer.
+    constexpr operator i64() const noexcept {
+        return {static_cast<i64::native_type>(native)};
+    }
 
-        // Conversion operator to 16bit signed-integer.
-        constexpr operator i16() const noexcept {
-            return {static_cast<i16::native_type>(native)};
-        }
-    };
+    // Conversion operator to 32bit signed-integer.
+    constexpr operator i32() const noexcept {
+        return {static_cast<i32::native_type>(native)};
+    }
 
-    // Implement of unary + operator.
-    constexpr auto operator+(i8 v) noexcept
-        -> i8 { return {static_cast<i8::native_type>(+v.native)}; }
+    // Conversion operator to 16bit signed-integer.
+    constexpr operator i16() const noexcept {
+        return {static_cast<i16::native_type>(native)};
+    }
+};
 
-    // Implement of unary - operator.
-    constexpr auto operator-(i8 v) noexcept
-        -> i8 { return {static_cast<i8::native_type>(-v.native)}; }
+// Implement of unary + operator.
+constexpr auto operator+(i8 v) noexcept
+    -> i8 { return {static_cast<i8::native_type>(+v.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator+(i8 v1, i8 v2) noexcept
-        -> i8 { return {static_cast<i8::native_type>(v1.native + v2.native)}; }
-    
-    // Implement of `sub` operator.
-    constexpr auto operator-(i8 v1, i8 v2) noexcept
-        -> i8 { return {static_cast<i8::native_type>(v1.native - v2.native)}; }
+// Implement of unary - operator.
+constexpr auto operator-(i8 v) noexcept
+    -> i8 { return {static_cast<i8::native_type>(-v.native)}; }
 
-    // Implement of `mul` operator.
-    constexpr auto operator*(i8 v1, i8 v2) noexcept
-        -> i8 { return {static_cast<i8::native_type>(v1.native * v2.native)}; }
+// Implement of `add` operator.
+constexpr auto operator+(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native + v2.native)}; }
 
-    // Implement of `div` operator.
-    constexpr auto operator/(i8 v1, i8 v2) noexcept
-        -> i8 { return {static_cast<i8::native_type>(v1.native / v2.native)}; }
+// Implement of `sub` operator.
+constexpr auto operator-(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native - v2.native)}; }
 
-    // Implement of `mod` operator.
-    constexpr auto operator%(i8 v1, i8 v2) noexcept
-        -> i8 { return {static_cast<i8::native_type>(v1.native % v2.native)}; }
+// Implement of `mul` operator.
+constexpr auto operator*(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native * v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native < v2.native; }
+// Implement of `div` operator.
+constexpr auto operator/(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native / v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native > v2.native; }
+// Implement of `mod` operator.
+constexpr auto operator%(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native % v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<=(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native <= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native < v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>=(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native >= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native > v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator==(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native == v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<=(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native <= v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator!=(i8 v1, i8 v2) noexcept
-        -> bool { return v1.native != v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>=(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native >= v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator==(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native == v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator!=(i8 v1, i8 v2) noexcept
+    -> bool { return v1.native != v2.native; }
 }
 
 #endif

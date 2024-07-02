@@ -17,123 +17,109 @@ namespace kube {
 
     // Kernels of math function for 64bit floating point.
 
-    KUBE_HEADERONLY_INLINE auto _kfloor_f64(typename f64::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kfloor_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kceil_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kceil_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kabs_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kabs_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _ksin_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _ksin_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kcos_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kcos_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _ktan_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _ktan_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kasin_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kasin_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kacos_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kacos_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _katan_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _katan_f64(_kf64 x) noexcept
+        -> _kf64;
     
-    KUBE_HEADERONLY_INLINE auto _klog_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _klog_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _klog2_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _klog2_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kexp_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kexp_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kexp2_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kexp2_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _ksqrt_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _ksqrt_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _kcbrt_f64(typename f64::native_type x) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _kcbrt_f64(_kf64 x) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _khypot2d_f64(
-        typename f64::native_type x,
-        typename f64::native_type y
-    ) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f64(_kf64 x, _kf64 y) noexcept
+        -> _kf64;
 
-    KUBE_HEADERONLY_INLINE auto _khypot3d_f64(
-        typename f64::native_type x,
-        typename f64::native_type y,
-        typename f64::native_type z
-    ) noexcept
-        -> typename f64::native_type;
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f64(_kf64 x, _kf64 y, _kf64 z) noexcept
+        -> _kf64;
 
     // Kernels of math function for 32bit floating point.
 
-    KUBE_HEADERONLY_INLINE auto _kfloor_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kfloor_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kceil_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kceil_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kabs_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kabs_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _ksin_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _ksin_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kcos_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kcos_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _ktan_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _ktan_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kasin_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kasin_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kacos_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kacos_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _katan_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _katan_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _klog_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _klog_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _klog2_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _klog2_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kexp_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kexp_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kexp2_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kexp2_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _ksqrt_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _ksqrt_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _kcbrt_f32(typename f32::native_type x) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _kcbrt_f32(_kf32 x) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _khypot2d_f32(
-        typename f32::native_type x,
-        typename f32::native_type y
-    ) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _khypot2d_f32(_kf32 x, _kf32 y) noexcept
+        -> _kf32;
 
-    KUBE_HEADERONLY_INLINE auto _khypot3d_f32(
-        typename f32::native_type x,
-        typename f32::native_type y,
-        typename f32::native_type z
-    ) noexcept
-        -> typename f32::native_type;
+    KUBE_HEADERONLY_INLINE auto _khypot3d_f32(_kf32 x, _kf32 y, _kf32 z) noexcept
+        -> _kf32;
 
 
     template < typename T >

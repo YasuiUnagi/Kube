@@ -15,11 +15,13 @@
 
 namespace kube {
 
+    using _kf32 = float;
+
     // 32-bit floating-point type with enhanced type safety.
     struct alignas(4) f32 final {
 
         // Native type alias.
-        using native_type = float;
+        using native_type = _kf32;
 
         // Assersion for check native-type.
         static_assert(native_type(1.0) / native_type(2.0) > native_type(0.0));

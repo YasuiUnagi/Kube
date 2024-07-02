@@ -19,68 +19,69 @@
 
 namespace kube {
 
-    // Wrapper for builtin type of 64bit floating point.
-    struct f64;
+// Wrapper for builtin type of 64bit floating point.
+struct f64;
 
-    // Wrapper for builtin type of 32bit floating point.
-    struct f32;
+// Wrapper for builtin type of 32bit floating point.
+struct f32;
 
-    // Wrapper for builtin type of 64bit signed integer.
-    struct i64;
+// Wrapper for builtin type of 64bit signed integer.
+struct i64;
 
-    // Wrapper for builtin type of 32bit signed integer.
-    struct i32;
+// Wrapper for builtin type of 32bit signed integer.
+struct i32;
 
-    // Wrapper for builtin type of 16bit signed integer.
-    struct i16;
+// Wrapper for builtin type of 16bit signed integer.
+struct i16;
 
-    // Wrapper for builtin type of 8bit signed integer.
-    struct i8;
+// Wrapper for builtin type of 8bit signed integer.
+struct i8;
 
-    // Wrapper for builtin type of 64bit unsigned integer.
-    struct u64;
+// Wrapper for builtin type of 64bit unsigned integer.
+struct u64;
 
-    // Wrapper for builtin type of 32bit unsigned integer.
-    struct u32;
+// Wrapper for builtin type of 32bit unsigned integer.
+struct u32;
 
-    // Wrapper for builtin type of 16bit unsigned integer.
-    struct u16;
+// Wrapper for builtin type of 16bit unsigned integer.
+struct u16;
 
-    // Wrapper for builtin type of 8bit unsigned integer.
-    struct u8;
+// Wrapper for builtin type of 8bit unsigned integer.
+struct u8;
 
-    // Template of 2d vector type.
-    template < typename T > struct vec2d;
+// Template of 2d vector type.
+template < typename T > struct vec2d;
 
-    // Template of 3d vector type.
-    template < typename T > struct vec3d;
+// Template of 3d vector type.
+template < typename T > struct vec3d;
 
-    // Template of 2x2d matrix type.
-    template < typename T > struct mat2x2d;
+// Template of 2x2d matrix type.
+template < typename T > struct mat2x2d;
 
-    // Template of 3x3d matrix type.
-    template < typename T > struct mat3x3d;
+// Template of 3x3d matrix type.
+template < typename T > struct mat3x3d;
 
-    // Template of 2d box type.
-    template < typename T > struct box2d;
+// Template of 2d box type.
+template < typename T > struct box2d;
 
-    // Template of 3d box type.
-    template < typename T > struct box3d;
+// Template of 3d box type.
+template < typename T > struct box3d;
 
-    // Template of 3d color(RGB) type.
-    template < typename T > struct color3d;
+// Template of 3d color(RGB) type.
+template < typename T > struct color3d;
 
-    // Template of 4d color(RGBA) type.
-    template < typename T > struct color4d;
+// Template of 4d color(RGBA) type.
+template < typename T > struct color4d;
 
-    // Virtual struct for graphics object.
-    struct graphics;
+// Virtual struct for graphics object.
+struct graphics;
 
-    // Virtual struct for window.
-    struct window;
+// Virtual struct for window.
+struct window;
 
-    // Virtual struct for window listener.
-    struct window_adapter;
+// Virtual struct for window listener.
+struct window_adapter;
+
 }
 
 #include <kube_f64.hh>

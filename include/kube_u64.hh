@@ -16,59 +16,61 @@
 
 namespace kube {
 
-    // 64-bit floating-point type with enhanced type safety.
-    struct alignas(8) u64 final {
+using _ku64 = std::uint64_t;
 
-        // Native type alias.
-        using native_type = std::uint64_t;
+// 64-bit floating-point type with enhanced type safety.
+struct alignas(8) u64 final {
 
-        // Preserve native type variables.
-        native_type native;
-    };
+    // Native type alias.
+    using native_type = _ku64;
 
-    // Implement of `add` operator.
-    constexpr auto operator+(u64 v1, u64 v2) noexcept
-        -> u64 { return {static_cast<u64::native_type>(v1.native + v2.native)}; }
-    
-    // Implement of `sub` operator.
-    constexpr auto operator-(u64 v1, u64 v2) noexcept
-        -> u64 { return {static_cast<u64::native_type>(v1.native - v2.native)}; }
+    // Preserve native type variables.
+    native_type native;
+};
 
-    // Implement of `mul` operator.
-    constexpr auto operator*(u64 v1, u64 v2) noexcept
-        -> u64 { return {static_cast<u64::native_type>(v1.native * v2.native)}; }
+// Implement of `add` operator.
+constexpr auto operator+(u64 v1, u64 v2) noexcept
+    -> u64 { return {static_cast<u64::native_type>(v1.native + v2.native)}; }
 
-    // Implement of `div` operator.
-    constexpr auto operator/(u64 v1, u64 v2) noexcept
-        -> u64 { return {static_cast<u64::native_type>(v1.native / v2.native)}; }
+// Implement of `sub` operator.
+constexpr auto operator-(u64 v1, u64 v2) noexcept
+    -> u64 { return {static_cast<u64::native_type>(v1.native - v2.native)}; }
 
-    // Implement of `mod` operator.
-    constexpr auto operator%(u64 v1, u64 v2) noexcept
-        -> u64 { return {static_cast<u64::native_type>(v1.native % v2.native)}; }
+// Implement of `mul` operator.
+constexpr auto operator*(u64 v1, u64 v2) noexcept
+    -> u64 { return {static_cast<u64::native_type>(v1.native * v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native < v2.native; }
+// Implement of `div` operator.
+constexpr auto operator/(u64 v1, u64 v2) noexcept
+    -> u64 { return {static_cast<u64::native_type>(v1.native / v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native > v2.native; }
+// Implement of `mod` operator.
+constexpr auto operator%(u64 v1, u64 v2) noexcept
+    -> u64 { return {static_cast<u64::native_type>(v1.native % v2.native)}; }
 
-    // Implement of `add` operator.
-    constexpr auto operator<=(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native <= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native < v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator>=(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native >= v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native > v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator==(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native == v2.native; }
+// Implement of `add` operator.
+constexpr auto operator<=(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native <= v2.native; }
 
-    // Implement of `add` operator.
-    constexpr auto operator!=(u64 v1, u64 v2) noexcept
-        -> bool { return v1.native != v2.native; }
+// Implement of `add` operator.
+constexpr auto operator>=(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native >= v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator==(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native == v2.native; }
+
+// Implement of `add` operator.
+constexpr auto operator!=(u64 v1, u64 v2) noexcept
+    -> bool { return v1.native != v2.native; }
 }
 
 #endif
