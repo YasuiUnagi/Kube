@@ -8,21 +8,19 @@
  * yasuiunagi276951438@gmail.com
  */
 
-#ifndef KUBE_U8_HH
-#define KUBE_U8_HH
+#ifndef KUBE_SCALAR_I8_HH
+#define KUBE_SCALAR_I8_HH
 
 #include <kube.hh>
-#include <cstdint>
+#include <limits>
 
 namespace kube {
 
-using _ku8 = std::uint8_t;
-
 // 32-bit floating-point type with enhanced type safety.
-struct alignas(1) u8 final {
+struct alignas(1) i8 final {
 
     // Native type alias.
-    using native_type = _ku8;
+    using native_type = kernel::i8;
 
     // Preserve native type variables.
     native_type native;
@@ -51,68 +49,76 @@ struct alignas(1) u8 final {
     constexpr operator i16() const noexcept {
         return {static_cast<i16::native_type>(native)};
     }
-
-    // Conversion operator to 64bit unsigned-integer.
-    constexpr operator u64() const noexcept {
-        return {static_cast<u64::native_type>(native)};
-    }
-
-    // Conversion operator to 32bit unsigned-integer.
-    constexpr operator u32() const noexcept {
-        return {static_cast<u32::native_type>(native)};
-    }
-
-    // Conversion operator to 16bit unsigned-integer.
-    constexpr operator u16() const noexcept {
-        return {static_cast<u16::native_type>(native)};
-    }
 };
 
-using _ku8 = typename u8::native_type;
+// Implement of unary + operator.
+constexpr auto operator+(i8 v) noexcept
+    -> i8 { return {static_cast<i8::native_type>(+v.native)}; }
+
+// Implement of unary - operator.
+constexpr auto operator-(i8 v) noexcept
+    -> i8 { return {static_cast<i8::native_type>(-v.native)}; }
 
 // Implement of `add` operator.
-constexpr auto operator+(u8 v1, u8 v2) noexcept
-    -> u8 { return {static_cast<u8::native_type>(v1.native + v2.native)}; }
+constexpr auto operator+(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native + v2.native)}; }
 
 // Implement of `sub` operator.
-constexpr auto operator-(u8 v1, u8 v2) noexcept
-    -> u8 { return {static_cast<u8::native_type>(v1.native - v2.native)}; }
+constexpr auto operator-(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native - v2.native)}; }
 
 // Implement of `mul` operator.
-constexpr auto operator*(u8 v1, u8 v2) noexcept
-    -> u8 { return {static_cast<u8::native_type>(v1.native * v2.native)}; }
+constexpr auto operator*(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native * v2.native)}; }
 
 // Implement of `div` operator.
-constexpr auto operator/(u8 v1, u8 v2) noexcept
-    -> u8 { return {static_cast<u8::native_type>(v1.native / v2.native)}; }
+constexpr auto operator/(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native / v2.native)}; }
 
 // Implement of `mod` operator.
-constexpr auto operator%(u8 v1, u8 v2) noexcept
-    -> u8 { return {static_cast<u8::native_type>(v1.native % v2.native)}; }
+constexpr auto operator%(i8 v1, i8 v2) noexcept
+    -> i8 { return {static_cast<i8::native_type>(v1.native % v2.native)}; }
 
 // Implement of `add` operator.
-constexpr auto operator<(u8 v1, u8 v2) noexcept
+constexpr auto operator<(i8 v1, i8 v2) noexcept
     -> bool { return v1.native < v2.native; }
 
 // Implement of `add` operator.
-constexpr auto operator>(u8 v1, u8 v2) noexcept
+constexpr auto operator>(i8 v1, i8 v2) noexcept
     -> bool { return v1.native > v2.native; }
 
 // Implement of `add` operator.
-constexpr auto operator<=(u8 v1, u8 v2) noexcept
+constexpr auto operator<=(i8 v1, i8 v2) noexcept
     -> bool { return v1.native <= v2.native; }
 
 // Implement of `add` operator.
-constexpr auto operator>=(u8 v1, u8 v2) noexcept
+constexpr auto operator>=(i8 v1, i8 v2) noexcept
     -> bool { return v1.native >= v2.native; }
 
 // Implement of `add` operator.
-constexpr auto operator==(u8 v1, u8 v2) noexcept
+constexpr auto operator==(i8 v1, i8 v2) noexcept
     -> bool { return v1.native == v2.native; }
 
 // Implement of `add` operator.
-constexpr auto operator!=(u8 v1, u8 v2) noexcept
+constexpr auto operator!=(i8 v1, i8 v2) noexcept
     -> bool { return v1.native != v2.native; }
-}
+
+template <>
+constexpr auto min() noexcept
+    -> i8 { return {std::numeric_limits<typename i8::native_type>::min()}; }
+
+template <>
+constexpr auto max() noexcept
+    -> i8 { return {std::numeric_limits<typename i8::native_type>::max()}; }
+
+template <>
+constexpr auto min(i8 a, i8 b) noexcept
+    -> i8 { return a < b ? a : b; }
+
+template <>
+constexpr auto max(i8 a, i8 b) noexcept
+    -> i8 { return a > b ? a : b; }
+
+} // end of namespace kube
 
 #endif

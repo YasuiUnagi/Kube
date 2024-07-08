@@ -39,10 +39,6 @@ struct window_adapter {
     virtual void on_update()
     {
     }
-
-    virtual void on_draw(graphics &)
-    {
-    }
 };
 }
 

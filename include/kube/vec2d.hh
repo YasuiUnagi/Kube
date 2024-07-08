@@ -30,31 +30,31 @@ namespace kube {
             = delete;
     };
 
-    // Conversion operator from f32 to f32::native_type.
+    // Conversion operator from f64 to f64::native_type.
     template <>
     template <>
-    constexpr vec2d<f64>::operator vec2d<f64::native_type>() const noexcept {
-        return {x.native, y.native};
+    constexpr vec2d<f64>::operator vec2d<typename f64::native_type>() const noexcept {
+        return {x, y};
     }
 
     // Conversion operator from f32 to f32::native_type.
     template <>
     template <>
-    constexpr vec2d<f32>::operator vec2d<f32::native_type>() const noexcept {
+    constexpr vec2d<f32>::operator vec2d<typename f32::native_type>() const noexcept {
         return {x.native, y.native};
     }
 
-    // Conversion operator from f32::native_type to f32.
+    // Conversion operator from f64:native_type to f64.
     template <>
     template <>
-    constexpr vec2d<f64::native_type>::operator vec2d<f64>() const noexcept {
+    constexpr vec2d<typename f64::native_type>::operator vec2d<f64>() const noexcept {
         return {{x}, {y}};
     }
 
     // Conversion operator from f32::native_type to f32.
     template <>
     template <>
-    constexpr vec2d<f32::native_type>::operator vec2d<f32>() const noexcept {
+    constexpr vec2d<typename f32::native_type>::operator vec2d<f32>() const noexcept {
         return {{x}, {y}};
     }
 
@@ -108,59 +108,26 @@ namespace kube {
     constexpr auto operator%(const vec2d<T> &v, const T &scalar) noexcept
         -> vec2d<T> { return {v.x % scalar, v.y % scalar}; }
 
+    // Explicit instatiation.
+    template struct vec2d<f64>;
+    template struct vec2d<f32>;
+    template struct vec2d<typename f64::native_type>;
+    template struct vec2d<typename f32::native_type>;
 
+    // Hypothesis of 2d vector.
     template < typename T >
     inline auto hypot(vec2d<T> v) noexcept
         -> T = delete;
     
+    // Hypothesis of 2d f64 vector.
     template <>
     inline auto hypot(vec2d<f64> v) noexcept
-        -> f64 { return hypot(v.x, v.y); }
+        -> f64 { return {kernel::hypot2d_f64(v.x, v.y)}; }
 
+    // Hypothesis of 2d f32 vector.
     template <>
     inline auto hypot(vec2d<f32> v) noexcept
-        -> f32 { return hypot(v.x, v.y); }
-
-
-    // rotator for 2d vector.
-    template < typename T >
-    inline auto rot2d(T x, T y, T radian) noexcept
-        -> vec2d<T> = delete;
-
-    // rotator for 2d vector.
-    template < typename T >
-    inline auto rot2d(vec2d<T> v, T radian) noexcept
-        -> vec2d<T> { return rot2d(v.x, v.y, radian); }
-
-    // Explicit instatiation.
-    template struct vec2d<f64>;
-    template struct vec2d<f32>;
-    template struct vec2d<f64::native_type>;
-    template struct vec2d<f32::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot2d_f64(
-        typename f64::native_type x,
-        typename f64::native_type y,
-        typename f64::native_type radian
-    ) noexcept
-        -> vec2d<f64::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot2d_f32(
-        typename f32::native_type x,
-        typename f32::native_type y,
-        typename f32::native_type radian
-    ) noexcept
-        -> vec2d<f32::native_type>;
-
-    template <>
-    inline auto rot2d(f64 x, f64 y, f64 radian) noexcept
-        -> vec2d<f64> { return _krot2d_f64(x.native, y.native, radian.native); }
-
-    template <>
-    inline auto rot2d(f32 x, f32 y, f32 radian) noexcept
-        -> vec2d<f32> { return _krot2d_f32(x.native, y.native, radian.native); }
+        -> f32 { return {kernel::hypot2d_f32(v.x, v.y)}; }
 }
 
 #endif

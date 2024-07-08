@@ -8,21 +8,19 @@
  * yasuiunagi276951438@gmail.com
  */
 
-#ifndef KUBE_I16_HH
-#define KUBE_I16_HH
+#ifndef KUBE_SCALAR_I16_HH
+#define KUBE_SCALAR_I16_HH
 
 #include <kube.hh>
-#include <cstdint>
+#include <limits>
 
 namespace kube {
-
-using _ki16 = std::int16_t;
 
 // 32-bit floating-point type with enhanced type safety.
 struct alignas(2) i16 final {
 
     // Native type alias.
-    using native_type = _ki16;
+    using native_type = kernel::i16;
 
     // Preserve native type variables.
     native_type native;
@@ -99,6 +97,23 @@ constexpr auto operator==(i16 v1, i16 v2) noexcept
 // Implement of "add" operator.
 constexpr auto operator!=(i16 v1, i16 v2) noexcept
     -> bool { return v1.native != v2.native; }
+
+template <>
+constexpr auto min() noexcept
+    -> i16 { return {std::numeric_limits<i16::native_type>::min()}; }
+
+template <>
+constexpr auto max() noexcept
+    -> i16 { return {std::numeric_limits<i16::native_type>::max()}; }
+
+template <>
+constexpr auto min(i16 a, i16 b) noexcept
+    -> i16 { return a < b ? a : b; }
+
+template <>
+constexpr auto max(i16 a, i16 b) noexcept
+    -> i16 { return a > b ? a : b; }
+
 }
 
 #endif

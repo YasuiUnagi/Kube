@@ -8,21 +8,19 @@
  * yasuiunagi276951438@gmail.com
  */
 
-#ifndef KUBE_U32_HH
-#define KUBE_U32_HH
+#ifndef KUBE_SCALAR_U32_HH
+#define KUBE_SCALAR_U32_HH
 
 #include <kube.hh>
 #include <cstdint>
 
 namespace kube {
 
-using _ku32 = std::uint32_t;
-
 // 32-bit floating-point type with enhanced type safety.
 struct alignas(4) u32 final {
 
     // Native type alias.
-    using native_type = _ku32;
+    using native_type = kernel::u32;
 
     // Preserve native type variables.
     native_type native;
@@ -86,6 +84,23 @@ constexpr auto operator==(u32 v1, u32 v2) noexcept
 // Implement of `add` operator.
 constexpr auto operator!=(u32 v1, u32 v2) noexcept
     -> bool { return v1.native != v2.native; }
-}
+
+template <>
+constexpr auto min() noexcept
+    -> u32 { return {std::numeric_limits<typename u32::native_type>::min()}; }
+
+template <>
+constexpr auto max() noexcept
+    -> u32 { return {std::numeric_limits<typename u32::native_type>::max()}; }
+
+template <>
+constexpr auto min(u32 a, u32 b) noexcept
+    -> u32 { return a < b ? a : b; }
+
+template <>
+constexpr auto max(u32 a, u32 b) noexcept
+    -> u32 { return a > b ? a : b; }
+
+} // end of namespace kube
 
 #endif

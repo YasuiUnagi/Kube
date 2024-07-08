@@ -108,116 +108,26 @@ namespace kube {
     constexpr auto operator%(const vec3d<T> &v, const T &scalar) noexcept
         -> vec3d<T> { return { v.x % scalar, v.y % scalar, v.z % scalar}; }
 
-    
+    // Explicit instatiation.
+    template struct vec3d<f64>;
+    template struct vec3d<f32>;
+    template struct vec3d<typename f64::native_type>;
+    template struct vec3d<typename f32::native_type>;
+
+    // Hypothesis of 3d vector.
     template < typename T >
     inline auto hypot(vec3d<T> v) noexcept
         -> T = delete;
 
+    // Hypothesis of 3d f64 vector.
     template <>
     inline auto hypot(vec3d<f64> v) noexcept
-        -> f64 { return hypot(v.x, v.y, v.z); }
+        -> f64 { return {kubekernel::hypot3d_f64(v.x, v.y, v.z)}; }
 
+    // Hypothesis of 3d f32 vector.
     template <>
     inline auto hypot(vec3d<f32> v) noexcept
-        -> f32 { return hypot(v.x, v.y, v.z); }
-
-
-    template < typename T >
-    inline auto rot3d_x(T x, T y, T z, T radian) noexcept
-        -> vec3d<T> = delete;
-
-    template < typename T >
-    inline auto rot3d_y(T x, T y, T z, T radian) noexcept
-        -> vec3d<T> = delete;
-
-    template < typename T >
-    inline auto rot3d_z(T x, T y, T z, T radian) noexcept
-        -> vec3d<T> = delete;
-
-    template < typename T >
-    inline auto rot3d_x(vec3d<T> v, T radian) noexcept
-        -> vec3d<T> { return rot3d_x(v.x, v.y, v.z, radian); }
-
-    template < typename T >
-    inline auto rot3d_y(vec3d<T> v, T radian) noexcept
-        -> vec3d<T> { return rot3d_y(v.x, v.y, v.z, radian); }
-
-    template < typename T >
-    inline auto rot3d_z(vec3d<T> v, T radian) noexcept
-        -> vec3d<T> { return rot3d_z(v.x, v.y, v.z, radian); }
-
-
-    // Explicit instatiation.
-    template struct vec3d<f64>;
-    template struct vec3d<f32>;
-    template struct vec3d<f64::native_type>;
-    template struct vec3d<f32::native_type>;
-    
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_x_f64(
-        typename f64::native_type x,
-        typename f64::native_type y,
-        typename f64::native_type z,
-        typename f64::native_type radian
-    ) noexcept
-        -> vec3d<f64::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_x_f32(
-        typename f32::native_type x,
-        typename f32::native_type y,
-        typename f32::native_type z,
-        typename f32::native_type radian
-    ) noexcept
-        -> vec3d<f32::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_y_f64(
-        typename f64::native_type x,
-        typename f64::native_type y,
-        typename f64::native_type z,
-        typename f64::native_type radian
-    ) noexcept
-        -> vec3d<f64::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_y_f32(
-        typename f32::native_type x,
-        typename f32::native_type y,
-        typename f32::native_type z,
-        typename f32::native_type radian
-    ) noexcept
-        -> vec3d<f32::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_z_f64(
-        typename f64::native_type x,
-        typename f64::native_type y,
-        typename f64::native_type z,
-        typename f64::native_type radian
-    ) noexcept
-        -> vec3d<f64::native_type>;
-
-    // Kernel of math function for 2d vector.
-    KUBE_HEADERONLY_INLINE auto _krot3d_z_f32(
-        typename f32::native_type x,
-        typename f32::native_type y,
-        typename f32::native_type z,
-        typename f32::native_type radian
-    ) noexcept
-        -> vec3d<f32::native_type>;
-
-    template <>
-    inline auto rot3d_x(f64 x, f64 y, f64 z, f64 radian) noexcept
-        -> vec3d<f64> { return _krot3d_x_f64(x.native, y.native, z.native, radian.native); }
-
-    template <>
-    inline auto rot3d_x(f32 x, f32 y, f32 z, f32 radian) noexcept
-        -> vec3d<f32> { return _krot3d_x_f32(x.native, y.native, z.native, radian.native); }
-
-    template <>
-    inline auto rot3d_y(f32 x, f32 y, f32 z, f32 radian) noexcept
-        -> vec3d<f32> { return _krot3d_y_f32(x.native, y.native, z.native, radian.native); }
+        -> f32 { return {kubekernel::hypot3d_f32(v.x, v.y, v.z)}; }
 }
 
 #endif
