@@ -1,11 +1,11 @@
-#ifndef KUBEKERNEL_WINDOW_HH
-#define KUBEKERNEL_WINDOW_HH
+#ifndef KUBE_KERNEL_WINDOW_HH
+#define KUBE_KERNEL_WINDOW_HH
 
 #include <kube/kernel.hh>
 
-namespace kubekernel {
+namespace kube::kernel {
 
-    struct window;
+    struct Window;
 }
 
 #endif

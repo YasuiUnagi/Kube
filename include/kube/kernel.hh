@@ -21,23 +21,23 @@ using u32 = std::uint32_t;
 using u16 = std::uint16_t;
 using u8 = std::uint8_t;
 
-// Interface of 2d graphics object.
-struct graphics;
+// Interface of graphics buffer.
+struct Canvas;
 
 // Interface of 2d graphics object.
-struct graphics2d;
+struct Graphics2D;
 
 // Interface of 3d graphics object.
-struct graphics3d;
+struct Graphics3D;
 
 // Interface of window object.
-struct window;
+struct Window;
 
 }
 
 #include <kube/kernel/math.hh>
 #include <kube/kernel/window.hh>
-#include <kube/kernel/graphics.hh>
+#include <kube/kernel/canvas.hh>
 #include <kube/kernel/graphics2d.hh>
 #include <kube/kernel/graphics3d.hh>
 

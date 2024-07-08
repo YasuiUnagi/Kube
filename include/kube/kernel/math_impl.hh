@@ -1,7 +1,7 @@
 #ifndef KUBEKERNEL_MATH_IMPL_HH
 #define KUBEKERNEL_MATH_IMPL_HH
 
-#include <kube/kernel.hh>
+#include <kube/kernel_impl.hh>
 #include <cmath>
 
 namespace kube::kernel {

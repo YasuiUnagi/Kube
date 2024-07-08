@@ -17,23 +17,23 @@
 namespace kube {
 
     template < typename T >
-    struct alignas(T) box2d final {
+    struct alignas(T) Box2D final {
 
         T x1, y1;
         T x2, y2;
 
         // Construct from 2d vectors.
-        constexpr box2d(
-            const vec2d<T> &v1,
-            const vec2d<T> &v2
-        ) : box2d(
+        constexpr Box2D(
+            const Vec2D<T> &v1,
+            const Vec2D<T> &v2
+        ) : Box2D(
             v1.x, v1.y,
             v2.x, v2.y
         ) {
         }
 
         // Construct from values.
-        constexpr box2d(
+        constexpr Box2D(
             T x1, T y1,
             T x2, T y2
         ) : x1(x1), y1(y1),
@@ -43,8 +43,8 @@ namespace kube {
         }
 
         // Get translated 2d box.
-        constexpr auto translate(const vec2d<T> &v) const noexcept
-            -> box2d {
+        constexpr auto translate(const Vec2D<T> &v) const noexcept
+            -> Box2D {
             return {
                 x1 + v.x, y1 + v.y,
                 x2 + v.x, y2 + v.y};

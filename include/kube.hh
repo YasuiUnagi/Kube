@@ -49,28 +49,28 @@ struct u16;
 struct u8;
 
 // Template of 2d vector type.
-template < typename T > struct vec2d;
+template < typename T > struct Vec2D;
 
 // Template of 3d vector type.
-template < typename T > struct vec3d;
+template < typename T > struct Vec3D;
 
 // Template of 2x2d matrix type.
-template < typename T > struct mat2x2d;
+template < typename T > struct Mat2x2D;
 
 // Template of 3x3d matrix type.
-template < typename T > struct mat3x3d;
+template < typename T > struct Mat3x3D;
 
 // Template of 2d box type.
-template < typename T > struct box2d;
+template < typename T > struct Box2D;
 
 // Template of 3d box type.
-template < typename T > struct box3d;
+template < typename T > struct Box3D;
 
 // Template of 3d color(RGB) type.
-template < typename T > struct color3d;
+template < typename T > struct Color3D;
 
 // Template of 4d color(RGBA) type.
-template < typename T > struct color4d;
+template < typename T > struct Color4D;
 
 // Virtual struct for renderer2d object.
 struct renderer2d;

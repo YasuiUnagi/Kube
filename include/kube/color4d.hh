@@ -16,41 +16,41 @@
 namespace kube {
 
     template < typename T >
-    struct color4d final {
+    struct Color4D final {
 
         T r, g, b, a;
 
         // Conversion operator to U.
         template < typename U >
-        constexpr operator color4d<U>() const noexcept
+        constexpr operator Color4D<U>() const noexcept
             = delete;
     } ;
 
     // Conversion operator from f64 to f64::native_type.
     template <>
     template <>
-    constexpr color4d<f64>::operator color4d<f64::native_type>() const noexcept {
+    constexpr Color4D<f64>::operator Color4D<f64::native_type>() const noexcept {
         return {r.native, g.native, b.native, a.native};
     }
 
     // Conversion operator from f32 to f32::native_type.
     template <>
     template <>
-    constexpr color4d<f32>::operator color4d<f32::native_type>() const noexcept {
+    constexpr Color4D<f32>::operator Color4D<f32::native_type>() const noexcept {
         return {r.native, g.native, b.native, a.native};
     }
 
     // Conversion operator from f64::native_type to f64.
     template <>
     template <>
-    constexpr color4d<f64::native_type>::operator color4d<f64>() const noexcept {
+    constexpr Color4D<f64::native_type>::operator Color4D<f64>() const noexcept {
         return {r, g, b, a};
     }
 
     // Conversion operator from f32::native_type to f32.
     template <>
     template <>
-    constexpr color4d<f32::native_type>::operator color4d<f32>() const noexcept {
+    constexpr Color4D<f32::native_type>::operator Color4D<f32>() const noexcept {
         return {r, g, b, a};
     }
 }

@@ -3,16 +3,11 @@
 
 #include <kube/kernel.hh>
 #include <windows.h>
-#include <type_traits>
-#include <atomic>
 
-namespace kubekernel {
+namespace kube::kernel {
 
-    auto window_draw(void *) noexcept
-        -> void {}
+    
 
-    auto window_show(void *) noexcept
-        -> void {}
 }
 
 #endif

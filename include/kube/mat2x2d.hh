@@ -16,29 +16,29 @@
 namespace kube {
     
     template < typename T >
-    struct alignas(T) mat2x2d final {
+    struct alignas(T) Mat2x2D final {
 
         T x1, y1;
         T x2, y2;
 
         // 2x2d unit matrix.
-        static constexpr mat2x2d unit {
+        static constexpr Mat2x2D UNIT {
             T(1), T(0),
             T(0), T(1)
         };
 
         // Construct from two vectors.
-        constexpr mat2x2d(
-            const vec2d<T> &v1,
-            const vec2d<T> &v2
-        ) : mat2x2d(
+        constexpr Mat2x2D(
+            const Vec2D<T> &v1,
+            const Vec2D<T> &v2
+        ) : Mat2x2D(
             v1.x, v1.y,
             v2.x, v2.y
         ) {
         }
 
         // Construct from values.
-        constexpr mat2x2d(
+        constexpr Mat2x2D(
             T x1, T y1,
             T x2, T y2
         ) : x1(x1), y1(y1),
@@ -47,7 +47,7 @@ namespace kube {
 
         // Get transposed 2x2d matrix.
         constexpr auto transpose() const noexcept
-            -> mat2x2d {
+            -> Mat2x2D {
             return {
                 x1, x2,
                 y1, y2};
@@ -55,7 +55,7 @@ namespace kube {
 
         // Get 2x2d matrix in which each element is mapped.
         constexpr auto map(T fn(T)) const noexcept
-            -> mat2x2d {
+            -> Mat2x2D {
             return {
                 fn(x1), fn(y1),
                 fn(x2), fn(y2)};
@@ -63,19 +63,9 @@ namespace kube {
     };
 
 
-    // Get 2d rotation matrix.
     template < typename T >
-    constexpr auto rot2d(T radian) noexcept
-        -> mat2x2d<T> {
-        return {
-            +cos(radian), -sin(radian),
-            +sin(radian), +cos(radian)};
-    }
-
-
-    template < typename T >
-    constexpr auto operator+(const mat2x2d<T> &m1, const mat2x2d<T> &m2) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator+(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m1.x1 + m2.x1, m1.y1 + m2.y1,
@@ -83,8 +73,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator-(const mat2x2d<T> &m1, const mat2x2d<T> &m2) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator-(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m1.x1 - m2.x1, m1.y1 - m2.y1,
@@ -92,8 +82,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator*(const mat2x2d<T> &m1, const mat2x2d<T> &m2) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator*(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m1.x1 * m2.x1, m1.y1 * m2.y1,
@@ -101,8 +91,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator/(const mat2x2d<T> &m1, const mat2x2d<T> &m2) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator/(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m1.x1 / m2.x1, m1.y1 / m2.y1,
@@ -110,8 +100,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator%(const mat2x2d<T> &m1, const mat2x2d<T> &m2) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator%(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m1.x1 % m2.x1, m1.y1 % m2.y1,
@@ -120,8 +110,8 @@ namespace kube {
 
 
     template < typename T >
-    constexpr auto operator+(const mat2x2d<T> &m, const T &scalar) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator+(const Mat2x2D<T> &m, const T &scalar) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m.x1 + scalar, m.y1 + scalar,
@@ -129,8 +119,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator-(const mat2x2d<T> &m, const T &scalar) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator-(const Mat2x2D<T> &m, const T &scalar) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m.x1 - scalar, m.y1 - scalar,
@@ -138,8 +128,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator*(const mat2x2d<T> &m, const T &scalar) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator*(const Mat2x2D<T> &m, const T &scalar) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m.x1 * scalar, m.y1 * scalar,
@@ -147,8 +137,8 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator/(const mat2x2d<T> &m, const T &scalar) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator/(const Mat2x2D<T> &m, const T &scalar) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m.x1 / scalar, m.y1 / scalar,
@@ -156,12 +146,24 @@ namespace kube {
     }
 
     template < typename T >
-    constexpr auto operator%(const mat2x2d<T> &m, const T &scalar) noexcept
-        -> mat2x2d<T>
+    constexpr auto operator%(const Mat2x2D<T> &m, const T &scalar) noexcept
+        -> Mat2x2D<T>
     {
         return {
             m.x1 % scalar, m.y1 % scalar,
             m.x2 % scalar, m.y2 % scalar};
+    }
+
+    // Get 2d rotation matrix.
+    template < typename T >
+    constexpr auto rot2d(T radian) noexcept
+        -> Mat2x2D<T> {
+        T _sin = sin(radian);
+        T _cos = cos(radian); 
+        return {
+            +_cos, -_sin,
+            +_sin, +_cos
+        };
     }
 }
 
