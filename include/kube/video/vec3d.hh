@@ -62,66 +62,66 @@ namespace kube::video {
     // Conversion operator to f64::native_type to f64.
     template <>
     template <>
-    constexpr Vec3D<f64::native_type>::operator Vec3D<f64>() const noexcept {
+    constexpr Vec3D<typename f64::native_type>::operator Vec3D<f64>() const noexcept {
         return {{x()}, {y()}, {z()}};
     }
 
     // Conversion operator to f32::native_type to f32.
     template <>
     template <>
-    constexpr Vec3D<f32::native_type>::operator Vec3D<f32>() const noexcept {
+    constexpr Vec3D<typename f32::native_type>::operator Vec3D<f32>() const noexcept {
         return {{x()}, {y()}, {z()}};
     }
 
     // Implements for "add" of 3d vector.
     template < typename T >
     constexpr auto operator+(const Vec3D<T> &v1, const Vec3D<T> &v2) noexcept
-        -> Vec3D<T> { return { v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z()}; }
+        -> Vec3D<T> { return {v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z()}; }
 
     // Implements for "sub" of 3d vector.
     template < typename T >
     constexpr auto operator-(const Vec3D<T> &v1, const Vec3D<T> &v2) noexcept
-        -> Vec3D<T> { return { v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z()}; }
+        -> Vec3D<T> { return {v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z()}; }
 
     // Implements for "mul" of 3d vector.
     template < typename T >
     constexpr auto operator*(const Vec3D<T> &v1, const Vec3D<T> &v2) noexcept
-        -> Vec3D<T> { return { v1.x() * v2.x(), v1.y() * v2.y(), v1.z() * v2.z()}; }
+        -> Vec3D<T> { return {v1.x() * v2.x(), v1.y() * v2.y(), v1.z() * v2.z()}; }
 
     // Implements for "div" of 3d vector.
     template < typename T >
     constexpr auto operator/(const Vec3D<T> &v1, const Vec3D<T> &v2) noexcept
-        -> Vec3D<T> { return { v1.x() / v2.x(), v1.y() / v2.y(), v1.z() / v2.z()}; }
+        -> Vec3D<T> { return {v1.x() / v2.x(), v1.y() / v2.y(), v1.z() / v2.z()}; }
 
     // Implements for "mod" of 3d vector.
     template < typename T >
     constexpr auto operator%(const Vec3D<T> &v1, const Vec3D<T> &v2) noexcept
-        -> Vec3D<T> { return { v1.x() % v2.x(), v1.y() % v2.y(), v1.z() % v2.z()}; }
+        -> Vec3D<T> { return {v1.x() % v2.x(), v1.y() % v2.y(), v1.z() % v2.z()}; }
 
     // Implements for "add" of 3d vector.
     template < typename T >
     constexpr auto operator+(const Vec3D<T> &v, const T &scalar) noexcept
-        -> Vec3D<T> { return { v.x() + scalar, v.y() + scalar, v.z() + scalar}; }
+        -> Vec3D<T> { return {v.x() + scalar, v.y() + scalar, v.z() + scalar}; }
 
     // Implements for "sub" of 3d vector.
     template < typename T >
     constexpr auto operator-(const Vec3D<T> &v, const T &scalar) noexcept
-        -> Vec3D<T> { return { v.x() - scalar, v.y() - scalar, v.z() - scalar}; }
+        -> Vec3D<T> { return {v.x() - scalar, v.y() - scalar, v.z() - scalar}; }
 
     // Implements for "mul" of 3d vector.
     template < typename T >
     constexpr auto operator*(const Vec3D<T> &v, const T &scalar) noexcept
-        -> Vec3D<T> { return { v.x() * scalar, v.y() * scalar, v.z() * scalar}; }
+        -> Vec3D<T> { return {v.x() * scalar, v.y() * scalar, v.z() * scalar}; }
 
     // Implements for "div" of 3d vector.
     template < typename T >
     constexpr auto operator/(const Vec3D<T> &v, const T &scalar) noexcept
-        -> Vec3D<T> { return { v.x() / scalar, v.y() / scalar, v.z() / scalar}; }
+        -> Vec3D<T> { return {v.x() / scalar, v.y() / scalar, v.z() / scalar}; }
 
     // Implements for "mod" of 3d vector.
     template < typename T >
     constexpr auto operator%(const Vec3D<T> &v, const T &scalar) noexcept
-        -> Vec3D<T> { return { v.x() % scalar, v.y() % scalar, v.z() % scalar}; }
+        -> Vec3D<T> { return {v.x() % scalar, v.y() % scalar, v.z() % scalar}; }
 
     // Hypothesis of 3d vector.
     template < typename T >

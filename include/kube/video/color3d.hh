@@ -23,7 +23,7 @@ namespace kube::video {
         // Conversion operator to U
         template < typename U >
         constexpr operator Color3D<U>() const noexcept
-            ;
+            = delete;
     } ;
 
     template struct Color3D<f32>;

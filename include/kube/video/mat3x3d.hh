@@ -24,20 +24,10 @@ struct alignas(T) Mat3x3D final {
 
     // 3x3d unit matrix.
     static constexpr Mat3x3D UNIT {
-        T(1.0), T(0.0), T(0.0),
-        T(0.0), T(1.0), T(0.0),
-        T(0.0), T(0.0), T(1.0)
+        T{1}, T{0}, T{0},
+        T{0}, T{1}, T{0},
+        T{0}, T{0}, T{1}
     };
-
-    // Construct from 3d vectors.
-    constexpr Mat3x3D(
-        const Vec3D<T> &v1,
-        const Vec3D<T> &v2,
-        const Vec3D<T> &v3
-    ) : x1(v1.x), y1(v1.y), z1(v1.z),
-        x2(v2.x), y2(v2.y), z2(v2.z),
-        x3(v3.x), y3(v3.y), z3(v3.z) {
-    }
 
     // Construct from values.
     constexpr Mat3x3D(
@@ -56,47 +46,118 @@ template struct Mat3x3D<f64>;
 template struct Mat3x3D<typename f32::native_type>;
 template struct Mat3x3D<typename f64::native_type>;
 
-// Get 3d rotation matrix in X axis.
+
 template < typename T >
-constexpr auto rot_x(T radian) noexcept
+constexpr auto operator+(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
-    T vs = sin<T>(radian);
-    T vc = cos<T>(radian);
     return {
-        T(1.0), T(0.0), T(0.0),
-        T(0.0), T(+vc), T(-vs),
-        T(0.0), T(+vs), T(+vc)
+        m1.x1 + m2.x1, m1.y1 + m2.y1, m1.z1 + m2.z1,
+        m1.x2 + m2.x2, m1.y2 + m2.y2, m1.z2 + m2.z2,
+        m1.x3 + m2.x3, m1.y3 + m2.y3, m1.z3 + m2.z3 
     };
 }
 
-// Get 3d rotation matrix in Y axis.
 template < typename T >
-constexpr auto rot_y(T radian) noexcept
+constexpr auto operator-(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
-    T vs = sin<T>(radian);
-    T vc = cos<T>(radian);
     return {
-        T(+vc), T(0.0), T(+vs),
-        T(0.0), T(1.0), T(0.0),
-        T(-vs), T(0.0), T(+vc)
+        m1.x1 - m2.x1, m1.y1 - m2.y1, m1.z1 - m2.z1,
+        m1.x2 - m2.x2, m1.y2 - m2.y2, m1.z2 + m2.z2,
+        m1.x3 - m2.x3, m1.y3 - m2.y3, m1.z3 - m2.z3 
     };
 }
 
-// Get 3d rotation matrix in Z axis.
 template < typename T >
-constexpr auto rot_z(T radian) noexcept
+constexpr auto operator*(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
-    T vs = sin<T>(radian);
-    T vc = cos<T>(radian);
     return {
-        T(+vc), T(-vs), T(0.0),
-        T(+vs), T(+vc), T(0.0),
-        T(0.0), T(0.0), T(1.0)
+        m1.x1 * m2.x1, m1.y1 * m2.y1, m1.z1 * m2.z1,
+        m1.x2 * m2.x2, m1.y2 * m2.y2, m1.z2 + m2.z2,
+        m1.x3 * m2.x3, m1.y3 * m2.y3, m1.z3 * m2.z3 
     };
 }
+
+template < typename T >
+constexpr auto operator/(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m1.x1 / m2.x1, m1.y1 / m2.y1, m1.z1 / m2.z1,
+        m1.x2 / m2.x2, m1.y2 / m2.y2, m1.z2 + m2.z2,
+        m1.x3 / m2.x3, m1.y3 / m2.y3, m1.z3 / m2.z3 
+    };
+}
+
+template < typename T >
+constexpr auto operator%(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m1.x1 % m2.x1, m1.y1 % m2.y1, m1.z1 % m2.z1,
+        m1.x2 % m2.x2, m1.y2 % m2.y2, m1.z2 + m2.z2,
+        m1.x3 % m2.x3, m1.y3 % m2.y3, m1.z3 % m2.z3 
+    };
+}
+
+
+template < typename T >
+constexpr auto operator+(const Mat3x3D<T> &m, const T &scalar) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m.x1 + scalar, m.y1 + scalar, m.z1 + scalar,
+        m.x2 + scalar, m.y2 + scalar, m.z2 + scalar,
+        m.x3 + scalar, m.y3 + scalar, m.z3 + scalar
+    };
+}
+
+template < typename T >
+constexpr auto operator-(const Mat3x3D<T> &m, const T &scalar) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m.x1 - scalar, m.y1 - scalar, m.z1 - scalar,
+        m.x2 - scalar, m.y2 - scalar, m.z2 - scalar,
+        m.x3 - scalar, m.y3 - scalar, m.z3 - scalar
+    };
+}
+
+template < typename T >
+constexpr auto operator*(const Mat3x3D<T> &m, const T &scalar) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m.x1 * scalar, m.y1 * scalar, m.z1 * scalar,
+        m.x2 * scalar, m.y2 * scalar, m.z2 * scalar,
+        m.x3 * scalar, m.y3 * scalar, m.z3 * scalar
+    };
+}
+
+template < typename T >
+constexpr auto operator/(const Mat3x3D<T> &m, const T &scalar) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m.x1 / scalar, m.y1 / scalar, m.z1 / scalar,
+        m.x2 / scalar, m.y2 / scalar, m.z2 / scalar,
+        m.x3 / scalar, m.y3 / scalar, m.z3 / scalar
+    };
+}
+
+template < typename T >
+constexpr auto operator%(const Mat3x3D<T> &m, const T &scalar) noexcept
+    -> Mat3x3D<T>
+{
+    return {
+        m.x1 % scalar, m.y1 % scalar, m.z1 % scalar,
+        m.x2 % scalar, m.y2 % scalar, m.z2 % scalar,
+        m.x3 % scalar, m.y3 % scalar, m.z3 % scalar
+    };
+}
+
 }
 
 #endif

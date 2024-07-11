@@ -10,11 +10,13 @@
 
 #ifndef KUBE_HH
 #define KUBE_HH
+
 #ifndef KUBE_HEADERONLY
 #define KUBE_HEADERONLY_INLINE inline
 #else
 #define KUBE_HEADERONLY_INLINE
 #endif
+
 #include <kube/f64.hh>
 #include <kube/f32.hh>
 #include <kube/i64.hh>
@@ -27,4 +29,5 @@
 #include <kube/u8.hh>
 #include <kube/math.hh>
 #include <kube/video.hh>
+
 #endif

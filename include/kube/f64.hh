@@ -18,13 +18,13 @@
 namespace kube {
 
 // [IMPLEMENTS_DETAIL]
-using _f64_t = double;
+using _f64 = double;
 
 // Wrapped for Type safty "f64".
 struct alignas(8) f64 final {
     
     // Native type alias.
-    using native_type = _f64_t;
+    using native_type = _f64;
 
     // Assersion for check native-type.
     static_assert(native_type(1.0) / native_type(2.0) > native_type(0.0));

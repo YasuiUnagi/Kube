@@ -7,11 +7,7 @@ namespace kube::video {
 
 class Graphics2D final {
 
-    
 
-public:
-
-    
 
 };
 

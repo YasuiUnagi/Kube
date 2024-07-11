@@ -25,10 +25,10 @@ namespace kube::video {
         }
 
         // Accessor for X dimension.
-        constexpr decltype(auto) x() const noexcept { return x; }
+        constexpr decltype(auto) x() const noexcept { return array[0]; }
 
         // Accessor for Y dimension.
-        constexpr decltype(auto) y() const noexcept { return y; }
+        constexpr decltype(auto) y() const noexcept { return array[1]; }
 
         // Co0nversion operator to U.
         template < typename U >
