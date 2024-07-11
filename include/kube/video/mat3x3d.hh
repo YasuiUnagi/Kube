@@ -18,9 +18,7 @@ namespace kube::video {
 template < typename T >
 struct alignas(T) Mat3x3D final {
 
-    T x1, y1, z1;
-    T x2, y2, z2;
-    T x3, y3, z3;
+    T array[3][3];
 
     // 3x3d unit matrix.
     static constexpr Mat3x3D UNIT {
@@ -34,10 +32,39 @@ struct alignas(T) Mat3x3D final {
         T x1, T y1, T z1,
         T x2, T y2, T z2,
         T x3, T y3, T z3
-    ) : x1(x1), y1(y1), z1(z1),
-        x2(x2), y2(y2), z2(z2),
-        x3(x3), y3(y3), z3(z3) {
+    ) : array {
+        {x1, y1, z1},
+        {x2, y2, z2},
+        {x3, y3, z3}
+    } {
     }
+
+    // Accessor for X1 component.
+    constexpr decltype(auto) x1() const noexcept { return array[0][0]; }
+
+    // Accessor for Y1 component.
+    constexpr decltype(auto) y1() const noexcept { return array[0][1]; }
+
+    // Accessor for Z1 component.
+    constexpr decltype(auto) z1() const noexcept { return array[0][2]; }
+
+    // Accessor for X2 component.
+    constexpr decltype(auto) x2() const noexcept { return array[1][0]; }
+
+    // Accessor for Y2 component.
+    constexpr decltype(auto) y2() const noexcept { return array[1][1]; }
+
+    // Accessor for Z2 component.
+    constexpr decltype(auto) z2() const noexcept { return array[1][2]; }
+
+    // Accessor for X3 component.
+    constexpr decltype(auto) x3() const noexcept { return array[2][0]; }
+
+    // Accessor for Y3 component.
+    constexpr decltype(auto) y3() const noexcept { return array[2][1]; }
+
+    // Accessor for Z3 component.
+    constexpr decltype(auto) z3() const noexcept { return array[2][2]; }
 };
 
 // Explicit instatiation
@@ -52,9 +79,9 @@ constexpr auto operator+(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m1.x1 + m2.x1, m1.y1 + m2.y1, m1.z1 + m2.z1,
-        m1.x2 + m2.x2, m1.y2 + m2.y2, m1.z2 + m2.z2,
-        m1.x3 + m2.x3, m1.y3 + m2.y3, m1.z3 + m2.z3 
+        m1.x1() + m2.x1(), m1.y1() + m2.y1(), m1.z1() + m2.z1(),
+        m1.x2() + m2.x2(), m1.y2() + m2.y2(), m1.z2() + m2.z2(),
+        m1.x3() + m2.x3(), m1.y3() + m2.y3(), m1.z3() + m2.z3()
     };
 }
 
@@ -63,9 +90,9 @@ constexpr auto operator-(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m1.x1 - m2.x1, m1.y1 - m2.y1, m1.z1 - m2.z1,
-        m1.x2 - m2.x2, m1.y2 - m2.y2, m1.z2 + m2.z2,
-        m1.x3 - m2.x3, m1.y3 - m2.y3, m1.z3 - m2.z3 
+        m1.x1() - m2.x1(), m1.y1() - m2.y1(), m1.z1() - m2.z1(),
+        m1.x2() - m2.x2(), m1.y2() - m2.y2(), m1.z2() + m2.z2(),
+        m1.x3() - m2.x3(), m1.y3() - m2.y3(), m1.z3() - m2.z3() 
     };
 }
 
@@ -74,9 +101,9 @@ constexpr auto operator*(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m1.x1 * m2.x1, m1.y1 * m2.y1, m1.z1 * m2.z1,
-        m1.x2 * m2.x2, m1.y2 * m2.y2, m1.z2 + m2.z2,
-        m1.x3 * m2.x3, m1.y3 * m2.y3, m1.z3 * m2.z3 
+        m1.x1() * m2.x1(), m1.y1() * m2.y1(), m1.z1() * m2.z1(),
+        m1.x2() * m2.x2(), m1.y2() * m2.y2(), m1.z2() + m2.z2(),
+        m1.x3() * m2.x3(), m1.y3() * m2.y3(), m1.z3() * m2.z3() 
     };
 }
 
@@ -85,9 +112,9 @@ constexpr auto operator/(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m1.x1 / m2.x1, m1.y1 / m2.y1, m1.z1 / m2.z1,
-        m1.x2 / m2.x2, m1.y2 / m2.y2, m1.z2 + m2.z2,
-        m1.x3 / m2.x3, m1.y3 / m2.y3, m1.z3 / m2.z3 
+        m1.x1() / m2.x1(), m1.y1() / m2.y1(), m1.z1() / m2.z1(),
+        m1.x2() / m2.x2(), m1.y2() / m2.y2(), m1.z2() + m2.z2(),
+        m1.x3() / m2.x3(), m1.y3() / m2.y3(), m1.z3() / m2.z3() 
     };
 }
 
@@ -96,9 +123,9 @@ constexpr auto operator%(const Mat3x3D<T> &m1, const Mat3x3D<T> &m2) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m1.x1 % m2.x1, m1.y1 % m2.y1, m1.z1 % m2.z1,
-        m1.x2 % m2.x2, m1.y2 % m2.y2, m1.z2 + m2.z2,
-        m1.x3 % m2.x3, m1.y3 % m2.y3, m1.z3 % m2.z3 
+        m1.x1() % m2.x1(), m1.y1() % m2.y1(), m1.z1() % m2.z1(),
+        m1.x2() % m2.x2(), m1.y2() % m2.y2(), m1.z2() + m2.z2(),
+        m1.x3() % m2.x3(), m1.y3() % m2.y3(), m1.z3() % m2.z3() 
     };
 }
 
@@ -108,9 +135,9 @@ constexpr auto operator+(const Mat3x3D<T> &m, const T &scalar) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m.x1 + scalar, m.y1 + scalar, m.z1 + scalar,
-        m.x2 + scalar, m.y2 + scalar, m.z2 + scalar,
-        m.x3 + scalar, m.y3 + scalar, m.z3 + scalar
+        m.x1() + scalar, m.y1() + scalar, m.z1() + scalar,
+        m.x2() + scalar, m.y2() + scalar, m.z2() + scalar,
+        m.x3() + scalar, m.y3() + scalar, m.z3() + scalar
     };
 }
 
@@ -119,9 +146,9 @@ constexpr auto operator-(const Mat3x3D<T> &m, const T &scalar) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m.x1 - scalar, m.y1 - scalar, m.z1 - scalar,
-        m.x2 - scalar, m.y2 - scalar, m.z2 - scalar,
-        m.x3 - scalar, m.y3 - scalar, m.z3 - scalar
+        m.x1() - scalar, m.y1() - scalar, m.z1() - scalar,
+        m.x2() - scalar, m.y2() - scalar, m.z2() - scalar,
+        m.x3() - scalar, m.y3() - scalar, m.z3() - scalar
     };
 }
 
@@ -130,9 +157,9 @@ constexpr auto operator*(const Mat3x3D<T> &m, const T &scalar) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m.x1 * scalar, m.y1 * scalar, m.z1 * scalar,
-        m.x2 * scalar, m.y2 * scalar, m.z2 * scalar,
-        m.x3 * scalar, m.y3 * scalar, m.z3 * scalar
+        m.x1() * scalar, m.y1() * scalar, m.z1() * scalar,
+        m.x2() * scalar, m.y2() * scalar, m.z2() * scalar,
+        m.x3() * scalar, m.y3() * scalar, m.z3() * scalar
     };
 }
 
@@ -141,9 +168,9 @@ constexpr auto operator/(const Mat3x3D<T> &m, const T &scalar) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m.x1 / scalar, m.y1 / scalar, m.z1 / scalar,
-        m.x2 / scalar, m.y2 / scalar, m.z2 / scalar,
-        m.x3 / scalar, m.y3 / scalar, m.z3 / scalar
+        m.x1() / scalar, m.y1() / scalar, m.z1() / scalar,
+        m.x2() / scalar, m.y2() / scalar, m.z2() / scalar,
+        m.x3() / scalar, m.y3() / scalar, m.z3() / scalar
     };
 }
 
@@ -152,9 +179,9 @@ constexpr auto operator%(const Mat3x3D<T> &m, const T &scalar) noexcept
     -> Mat3x3D<T>
 {
     return {
-        m.x1 % scalar, m.y1 % scalar, m.z1 % scalar,
-        m.x2 % scalar, m.y2 % scalar, m.z2 % scalar,
-        m.x3 % scalar, m.y3 % scalar, m.z3 % scalar
+        m.x1() % scalar, m.y1() % scalar, m.z1() % scalar,
+        m.x2() % scalar, m.y2() % scalar, m.z2() % scalar,
+        m.x3() % scalar, m.y3() % scalar, m.z3() % scalar
     };
 }
 

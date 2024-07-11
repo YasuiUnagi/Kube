@@ -19,29 +19,39 @@ namespace kube::video {
     template < typename T >
     struct alignas(T) Box3D final {
 
-        T x1, y1, z1;
-        T x2, y2, z2;
+        // C-array.
+        T array[3][2];
 
         // Construct from values.
         constexpr Box3D(
             T x1, T y1, T z1,
             T x2, T y2, T z2
-        ) : x1(x1), y1(y1), z1(z1),
-            x2(x2), y2(y2), z2(z2) {
-            if (this->x1 > this->x2) { std::swap(this->x1, this->x2); }
-            if (this->y1 > this->y2) { std::swap(this->y1, this->y2); }
-            if (this->z1 > this->z2) { std::swap(this->z1, this->z2); }
+        ) : array {
+            {x1, y1, z1},
+            {x2, y2, z2},
+        } {
+            if (this->x1() > this->x2()) { std::swap(this->x1(), this->x2()); }
+            if (this->y1() > this->y2()) { std::swap(this->y1(), this->y2()); }
+            if (this->z1() > this->z2()) { std::swap(this->z1(), this->z2()); }
         }
 
-        // Get translated 3d vector.
-        constexpr auto translate(const Vec3D<T> &v) const noexcept
-            -> Box3D
-        {
-            return {
-                x1 + v.x(), y1 + v.y(), z1 + v.z(),
-                x2 + v.x(), y2 + v.y(), z2 + v.z()
-            };
-        }
+        // Accessor for X1 dimension
+        constexpr decltype(auto) x1() const noexcept { return array[0][0]; }
+
+        // Accessor for Y1 dimension
+        constexpr decltype(auto) y1() const noexcept { return array[0][1]; }
+
+        // Accessor for Z1 dimension
+        constexpr decltype(auto) z1() const noexcept { return array[0][2]; }
+
+        // Accessor for X2 dimension
+        constexpr decltype(auto) x2() const noexcept { return array[1][0]; }
+
+        // Accessor for Y2 dimension
+        constexpr decltype(auto) y2() const noexcept { return array[1][1]; }
+
+        // Accessor for Z2 dimension
+        constexpr decltype(auto) z2() const noexcept { return array[1][2]; }
     };
 }
 

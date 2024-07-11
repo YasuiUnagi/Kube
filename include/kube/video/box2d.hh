@@ -19,26 +19,32 @@ namespace kube::video {
     template < typename T >
     struct alignas(T) Box2D final {
 
-        T x1, y1;
-        T x2, y2;
+        // C-array.
+        T array[2][2];
 
         // Construct from values.
         constexpr Box2D(
             T x1, T y1,
             T x2, T y2
-        ) : x1(x1), y1(y1),
-            x2(x2), y2(y2) {
-            if (this->x1 > this->x2) { std::swap(this->x1, this->x2); }
-            if (this->y1 > this->y2) { std::swap(this->y1, this->y2); }
+        ) : array {
+            {x1, y1},
+            {x2, y2}
+        } {
+            if (this->x1 > this->x2) { std::swap(this->x1(), this->x2()); }
+            if (this->y1 > this->y2) { std::swap(this->y1(), this->y2()); }
         }
 
-        // Get translated 2d box.
-        constexpr auto translate(const Vec2D<T> &v) const noexcept
-            -> Box2D {
-            return {
-                x1 + v.x(), y1 + v.y(),
-                x2 + v.x(), y2 + v.y()};
-        }
+        // Accessor for X1 dimension
+        constexpr decltype(auto) x1() const noexcept { return array[0][0]; }
+
+        // Accessor for Y1 dimension
+        constexpr decltype(auto) y1() const noexcept { return array[0][1]; }
+
+        // Accessor for X2 dimension
+        constexpr decltype(auto) x2() const noexcept { return array[1][0]; }
+
+        // Accessor for Y2 dimension
+        constexpr decltype(auto) y2() const noexcept { return array[1][1]; }
     };
 }
 
