@@ -26,4 +26,5 @@
 #include <kube/u16.hh>
 #include <kube/u8.hh>
 #include <kube/math.hh>
+#include <kube/video.hh>
 #endif

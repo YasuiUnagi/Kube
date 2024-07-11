@@ -23,18 +23,16 @@ struct alignas(T) Mat2x2D final {
 
     // 2x2d unit matrix.
     static constexpr Mat2x2D UNIT {
-        T(1), T(0),
-        T(0), T(1)
+        T(1.0), T(0.0),
+        T(0.0), T(1.0)
     };
 
     // Construct from two vectors.
     constexpr Mat2x2D(
         const Vec2D<T> &v1,
         const Vec2D<T> &v2
-    ) : Mat2x2D(
-        v1.x, v1.y,
-        v2.x, v2.y
-    ) {
+    ) : x1(v1.x), y1(v1.y),
+        x2(v2.x), y2(v2.y) {
     }
 
     // Construct from values.
@@ -43,22 +41,6 @@ struct alignas(T) Mat2x2D final {
         T x2, T y2
     ) : x1(x1), y1(y1),
         x2(x2), y2(y2) {
-    }
-
-    // Get transposed 2x2d matrix.
-    constexpr auto transpose() const noexcept
-        -> Mat2x2D {
-        return {
-            x1, x2,
-            y1, y2};
-    }
-
-    // Get 2x2d matrix in which each element is mapped.
-    constexpr auto map(T fn(T)) const noexcept
-        -> Mat2x2D {
-        return {
-            fn(x1), fn(y1),
-            fn(x2), fn(y2)};
     }
 };
 
