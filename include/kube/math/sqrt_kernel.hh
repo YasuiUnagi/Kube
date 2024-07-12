@@ -17,13 +17,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of sqrt function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto sqrt(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of sqrt function for "f32tive_type"
+KUBE_HEADERONLY_INLINE auto sqrt(f32) noexcept
+    -> f32tive_type;
 
-// Declaration of sqrt function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto sqrt(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of sqrt function for "f64tive_type"
+KUBE_HEADERONLY_INLINE auto sqrt(f64) noexcept
+    -> f64tive_type;
 }
 
 #endif

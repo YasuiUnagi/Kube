@@ -17,13 +17,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of tan function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto tan(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of tan function for "f32"
+KUBE_HEADERONLY_INLINE auto tan(f32) noexcept
+    -> f32;
 
-// Declaration of tan function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto tan(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of tan function for "f64"
+KUBE_HEADERONLY_INLINE auto tan(f64) noexcept
+    -> f64;
 }
 
 #endif

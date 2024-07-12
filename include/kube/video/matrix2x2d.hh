@@ -8,26 +8,27 @@
  * yasuiunagi276951438@gmail.com
  */
 
-#ifndef KUBE_VIDEO_MAT2X2D_HH
-#define KUBE_VIDEO_MAT2X2D_HH
+#ifndef KUBE_VIDEO_MATRIX2X2D_HH
+#define KUBE_VIDEO_MATRIX2X2D_HH
 
 #include <kube.hh>
 
 namespace kube::video {
     
 template < typename T >
-struct alignas(T) Mat2x2D final {
+struct alignas(T) Matrix2x2D final {
 
+    // C-array.
     T array[2][2];
 
     // 2x2d unit matrix.
-    static constexpr Mat2x2D UNIT {
+    static constexpr Matrix2x2D unit {
         T{1}, T{0},
         T{0}, T{1}
     };
 
     // Construct from values.
-    constexpr Mat2x2D(
+    constexpr Matrix2x2D(
         T x1, T y1,
         T x2, T y2
     ) : array {
@@ -50,15 +51,13 @@ struct alignas(T) Mat2x2D final {
 };
 
 // Explicit instatiation
-template struct Mat2x2D<f32>;
-template struct Mat2x2D<f64>;
-template struct Mat2x2D<typename f32::native_type>;
-template struct Mat2x2D<typename f64::native_type>;
+template struct Matrix2x2D<f32>;
+template struct Matrix2x2D<f64>;
 
-
+// Implements of "add" for 2x2d matrix.
 template < typename T >
-constexpr auto operator+(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator+(const Matrix2x2D<T> &m1, const Matrix2x2D<T> &m2) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m1.x1() + m2.x1(), m1.y1() + m2.y1(),
@@ -66,9 +65,10 @@ constexpr auto operator+(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
     };
 }
 
+// Implements of "sub" for 2x2d matrix.
 template < typename T >
-constexpr auto operator-(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator-(const Matrix2x2D<T> &m1, const Matrix2x2D<T> &m2) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m1.x1() - m2.x1(), m1.y1() - m2.y1(),
@@ -76,9 +76,10 @@ constexpr auto operator-(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
     };
 }
 
+// Implements of "mul" for 2x2d matrix.
 template < typename T >
-constexpr auto operator*(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator*(const Matrix2x2D<T> &m1, const Matrix2x2D<T> &m2) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m1.x1() * m2.x1(), m1.y1() * m2.y1(),
@@ -86,9 +87,10 @@ constexpr auto operator*(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
     };
 }
 
+// Implements of "div" for 2x2d matrix.
 template < typename T >
-constexpr auto operator/(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator/(const Matrix2x2D<T> &m1, const Matrix2x2D<T> &m2) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m1.x1() / m2.x1(), m1.y1() / m2.y1(),
@@ -96,20 +98,10 @@ constexpr auto operator/(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
     };
 }
 
+// Implements of "add" for 2x2d matrix with scalar.
 template < typename T >
-constexpr auto operator%(const Mat2x2D<T> &m1, const Mat2x2D<T> &m2) noexcept
-    -> Mat2x2D<T>
-{
-    return {
-        m1.x1() % m2.x1(), m1.y1() % m2.y1(),
-        m1.x2() % m2.x2(), m1.y2() % m2.y2()
-    };
-}
-
-
-template < typename T >
-constexpr auto operator+(const Mat2x2D<T> &m, const T &scalar) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator+(const Matrix2x2D<T> &m, const T &scalar) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m.x1() + scalar, m.y1() + scalar,
@@ -117,9 +109,10 @@ constexpr auto operator+(const Mat2x2D<T> &m, const T &scalar) noexcept
     };
 }
 
+// Implements of "sub" for 2x2d matrix with scalar.
 template < typename T >
-constexpr auto operator-(const Mat2x2D<T> &m, const T &scalar) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator-(const Matrix2x2D<T> &m, const T &scalar) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m.x1() - scalar, m.y1() - scalar,
@@ -127,9 +120,10 @@ constexpr auto operator-(const Mat2x2D<T> &m, const T &scalar) noexcept
     };
 }
 
+// Implements of "mul" for 2x2d matrix with scalar.
 template < typename T >
-constexpr auto operator*(const Mat2x2D<T> &m, const T &scalar) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator*(const Matrix2x2D<T> &m, const T &scalar) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m.x1() * scalar, m.y1() * scalar,
@@ -137,23 +131,14 @@ constexpr auto operator*(const Mat2x2D<T> &m, const T &scalar) noexcept
     };
 }
 
+// Implements of "div" for 2x2d matrix with scalar.
 template < typename T >
-constexpr auto operator/(const Mat2x2D<T> &m, const T &scalar) noexcept
-    -> Mat2x2D<T>
+constexpr auto operator/(const Matrix2x2D<T> &m, const T &scalar) noexcept
+    -> Matrix2x2D<T>
 {
     return {
         m.x1() / scalar, m.y1() / scalar,
         m.x2() / scalar, m.y2() / scalar
-    };
-}
-
-template < typename T >
-constexpr auto operator%(const Mat2x2D<T> &m, const T &scalar) noexcept
-    -> Mat2x2D<T>
-{
-    return {
-        m.x1() % scalar, m.y1() % scalar,
-        m.x2() % scalar, m.y2() % scalar
     };
 }
 

@@ -5,33 +5,19 @@
 
 namespace kube::math::kernel {
 
-// Declaration of round function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto hypot(
-    typename f32::native_type x,
-    typename f32::native_type y
-) noexcept
-    -> typename f32::native_type;
+// Declaration of round function for "f32pe"
+KUBE_HEADERONLY_INLINE auto hypot(f32 x, f32 y) noexcept
+    -> f32;
 
-KUBE_HEADERONLY_INLINE auto hypot(
-    typename f32::native_type x,
-    typename f32::native_type y,
-    typename f32::native_type z
-) noexcept
-    -> typename f32::native_type;
+KUBE_HEADERONLY_INLINE auto hypot(f32 x, f32 y, f32 z) noexcept
+    -> f32;
 
-// Declaration of round function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto hypot(
-    typename f64::native_type x,
-    typename f64::native_type y
-) noexcept
-    -> typename f64::native_type;
+// Declaration of round function for "f64pe"
+KUBE_HEADERONLY_INLINE auto hypot(f64 x, f64 y) noexcept
+    -> f64;
 
-KUBE_HEADERONLY_INLINE auto hypot(
-    typename f64::native_type x,
-    typename f64::native_type y,
-    typename f64::native_type z
-) noexcept
-    -> typename f64::native_type;
+KUBE_HEADERONLY_INLINE auto hypot(f64 x, f64 y, f64 z) noexcept
+    -> f64;
 }
 
 #endif

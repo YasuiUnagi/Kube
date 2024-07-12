@@ -5,13 +5,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of ceil function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto ceil(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of ceil function for "f32"
+KUBE_HEADERONLY_INLINE auto ceil(f32) noexcept
+    -> f32;
 
-// Declaration of ceil function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto ceil(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of ceil function for "f64"
+KUBE_HEADERONLY_INLINE auto ceil(f64) noexcept
+    -> f64;
 }
 
 #endif

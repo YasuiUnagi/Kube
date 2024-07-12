@@ -17,13 +17,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of cos function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto cos(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of cos function for "f32"
+KUBE_HEADERONLY_INLINE auto cos(f32) noexcept
+    -> f32;
 
-// Declaration of cos function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto cos(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of cos function for "f64"
+KUBE_HEADERONLY_INLINE auto cos(f64) noexcept
+    -> f64;
 }
 
 #endif

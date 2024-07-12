@@ -12,52 +12,34 @@
 #define KUBE_VIDEO_COLOR3D_HH
 
 #include <kube.hh>
+#include <type_traits>
+#include <utility>
 
 namespace kube::video {
 
-    template < typename T >
-    struct Color3D final {
+template < typename T >
+struct Color3D final {
 
-        T r, g, b;
+    // C-array.
+    T array[3];
 
-        // Conversion operator to U
-        template < typename U >
-        constexpr operator Color3D<U>() const noexcept
-            = delete;
-    } ;
+    // Construct from values.
+    constexpr Color3D(T r, T g, T b) : array {r, g, b} {}
 
-    template struct Color3D<f32>;
-    template struct Color3D<f64>;
-    template struct Color3D<typename f32::native_type>;
-    template struct Color3D<typename f64::native_type>;
+    // Accessor for channel of red.
+    constexpr decltype(auto) r() const noexcept { return array[0]; }
 
-    // Conversion operator from f64 to f64::native_type.
-    template <>
-    template <>
-    constexpr Color3D<f32>::operator Color3D<typename f32::native_type>() const noexcept {
-        return {r, g, b};
-    }
+    // Accessor for channel of green.
+    constexpr decltype(auto) g() const noexcept { return array[1]; }
 
-    // Conversion operator from f32 to f32::native_type.
-    template <>
-    template <>
-    constexpr Color3D<f32>::operator Color3D<typename f32::native_type>() const noexcept {
-        return {r, g, b};
-    }
+    // Accessor for channel of blue.
+    constexpr decltype(auto) b() const noexcept { return array[2]; }
+};
 
-    // Conversion operator from f64::native_type to f64.
-    template <>
-    template <>
-    constexpr Color3D<f64::native_type>::operator Color3D<f64>() const noexcept {
-        return {{r}, {g}, {b}};
-    }
+// Explicit instatiation.
+template struct Color3D<f32>;
+template struct Color3D<f64>;
 
-    // Conversion operator from f32::native_type to f32.
-    template <>
-    template <>
-    constexpr Color3D<f32::native_type>::operator Color3D<f32>() const noexcept {
-        return {{r}, {g}, {b}};
-    }
 }
 
 #endif

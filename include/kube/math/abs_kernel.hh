@@ -18,12 +18,12 @@
 namespace kube::math::kernel {
 
 // Kernel function of "abs" for "f32".
-KUBE_HEADERONLY_INLINE auto abs(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+KUBE_HEADERONLY_INLINE auto abs(f32) noexcept
+    -> f32;
 
 // Kernel function of "abs" for "f64".
-KUBE_HEADERONLY_INLINE auto abs(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+KUBE_HEADERONLY_INLINE auto abs(f64) noexcept
+    -> f64;
 }
 
 #endif

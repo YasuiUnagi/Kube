@@ -5,19 +5,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of round function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto pow(
-    typename f32::native_type x,
-    typename f32::native_type y
-) noexcept
-    -> typename f32::native_type;
+// f32"
+KUBE_HEADERONLY_INLINE auto pow(f32 x, f32 y) noexcept
+    -> f32;
 
-// Declaration of round function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto pow(
-    typename f64::native_type x,
-    typename f64::native_type y
-) noexcept
-    -> typename f64::native_type;
+// f64"
+KUBE_HEADERONLY_INLINE auto pow(f64 x, f64 y) noexcept
+    -> f64;
 }
 
 #endif

@@ -17,13 +17,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of atan function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto atan(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of atan function for "f32"
+KUBE_HEADERONLY_INLINE auto atan(f32) noexcept
+    -> f32;
 
-// Declaration of atan function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto atan(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of atan function for "f64"
+KUBE_HEADERONLY_INLINE auto atan(f64) noexcept
+    -> f64;
 }
 
 #endif

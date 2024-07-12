@@ -17,13 +17,13 @@
 
 namespace kube::math::kernel {
 
-// Declaration of cbrt function for "typename f32::native_type"
-KUBE_HEADERONLY_INLINE auto cbrt(typename f32::native_type) noexcept
-    -> typename f32::native_type;
+// Declaration of cbrt function for "f32"
+KUBE_HEADERONLY_INLINE auto cbrt(f32) noexcept
+    -> f32;
 
-// Declaration of cbrt function for "typename f64::native_type"
-KUBE_HEADERONLY_INLINE auto cbrt(typename f64::native_type) noexcept
-    -> typename f64::native_type;
+// Declaration of cbrt function for "f64"
+KUBE_HEADERONLY_INLINE auto cbrt(f64) noexcept
+    -> f64;
 }
 
 #endif
